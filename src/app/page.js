@@ -1,101 +1,227 @@
-import Image from "next/image";
+"use client"
+import React, { useState } from 'react';
+import { ShoppingCart, Sun, Battery, Zap, Phone, Menu, X } from 'lucide-react';
+import ProductGrid from '@/components/ProductCard';
 
-export default function Home() {
+const HomePage = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const products = [
+    {
+      id: 1,
+      name: "Premium Solar Panel Kit",
+      description: "Complete 5kW system with inverter and mounting",
+      price: "₦4,999",
+      image: "/solar.jpeg"
+    },
+    {
+      id: 2,
+      name: "Home Battery System",
+      description: "10kWh energy storage solution",
+      price: "₦3,499",
+      image: "/solar.jpeg"
+    },
+    {
+      id: 3,
+      name: "Solar Inverter Pro",
+      description: "High-efficiency grid-tie inverter",
+      price: "₦1,299",
+      image: "/solar.jpeg"
+    }
+  ];
+
+  const navItems = [
+    { label: "Home", href: "#home" },
+    { label: "Features", href: "#features" },
+    { label: "Products", href: "#products" },
+    { label: "Contact", href: "#contact" }
+  ];
+
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              src/app/page.js
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+    <div className="min-h-screen bg-gray-50">
+      {/* Navigation */}
+      <nav className="fixed top-0 w-full bg-white/90 backdrop-blur-sm shadow-md z-50">
+        <div className="container mx-auto px-4">
+          <div className="flex items-center justify-between h-16">
+            <div className="flex items-center">
+              <Sun className="w-8 h-8 text-yellow-500 mr-2" />
+              <span className="text-xl font-bold text-blue-800">SmartUp</span>
+            </div>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+            {/* Desktop Navigation */}
+            <div className="hidden md:flex space-x-8">
+              {navItems.map((item) => (
+                <a
+                  key={item.label}
+                  href={item.href}
+                  className="text-gray-600 hover:text-blue-800 transition-colors"
+                >
+                  {item.label}
+                </a>
+              ))}
+            </div>
+
+            {/* Mobile Menu Button */}
+            <button
+              className="md:hidden p-2"
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+            >
+              {isMenuOpen ? (
+                <X className="w-6 h-6 text-gray-600" />
+              ) : (
+                <Menu className="w-6 h-6 text-gray-600" />
+              )}
+            </button>
+          </div>
+
+          {/* Mobile Navigation */}
+          {isMenuOpen && (
+            <div className="md:hidden py-4">
+              {navItems.map((item) => (
+                <a
+                  key={item.label}
+                  href={item.href}
+                  className="block py-2 text-gray-600 hover:text-blue-800 transition-colors"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  {item.label}
+                </a>
+              ))}
+            </div>
+          )}
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+      </nav>
+
+      {/* Hero Section */}
+      <header id="home" className="bg-gradient-to-r from-blue-800 to-green-800 text-white pt-16">
+        <div className="container mx-auto px-4 py-16 md:py-24">
+          <div className="flex flex-col md:flex-row items-center justify-between">
+            <div className="md:w-1/2 mb-8 md:mb-0">
+              <h1 className="text-4xl md:text-6xl font-bold mb-4">
+                Power Your Future with Solar Energy
+              </h1>
+              <p className="text-xl mb-8">
+                Premium solar solutions for homes and businesses. Save money while saving the planet.
+              </p>
+              <a href="#products" className="inline-block bg-yellow-400 text-gray-900 px-8 py-3 rounded-lg font-semibold hover:bg-yellow-300 transition-colors">
+                View Products
+              </a>
+            </div>
+            <div className="md:w-1/2">
+              <img 
+                src="/solar.jpeg" 
+                alt="Solar Installation" 
+                className="rounded-lg shadow-xl"
+              />
+            </div>
+          </div>
+        </div>
+      </header>
+
+      {/* Features Section */}
+      <section id="features" className="py-16 bg-white">
+        <div className="container mx-auto px-4">
+          <h2 className="text-3xl font-bold text-center mb-12 text-[#191970]">Why Choose Our Solar Solutions?</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="flex flex-col items-center text-center p-6">
+              <div className="bg-blue-100 p-4 rounded-full mb-4">
+                <Zap className="w-8 h-8 text-blue-800" />
+              </div>
+              <h3 className="text-xl font-semibold mb-2 text-gray-400">Premium Quality</h3>
+              <p className="text-gray-600">Top-tier solar equipment from trusted manufacturers</p>
+            </div>
+            <div className="flex flex-col items-center text-center p-6">
+              <div className="bg-green-100 p-4 rounded-full mb-4">
+                <Battery className="w-8 h-8 text-green-800" />
+              </div>
+              <h3 className="text-xl font-semibold mb-2 text-gray-400">Energy Independence</h3>
+              <p className="text-gray-600">Complete power solutions with battery storage options</p>
+            </div>
+            <div className="flex flex-col items-center text-center p-6">
+              <div className="bg-yellow-100 p-4 rounded-full mb-4">
+                <Sun className="w-8 h-8 text-yellow-600" />
+              </div>
+              <h3 className="text-xl font-semibold mb-2 text-gray-400">Expert Installation</h3>
+              <p className="text-gray-600">Professional installation and ongoing support</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Featured Products */}
+      <section id="products" className="py-16 bg-gray-50">
+        <div className="container mx-auto px-4">
+          <h2 className="text-3xl font-bold text-center mb-12 text-[#191970]">Featured Solar Systems</h2>
+          <ProductGrid products={products} />
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section id="contact" className="bg-blue-800 text-white py-16">
+        <div className="container mx-auto px-4 text-center">
+          <h2 className="text-3xl font-bold mb-4">Ready to Switch to Solar?</h2>
+          <p className="text-xl mb-8">Contact us for a free consultation and quote</p>
+          <div className="flex justify-center space-x-4">
+            <button className="bg-yellow-400 text-gray-900 px-8 py-3 rounded-lg font-semibold hover:bg-yellow-300 transition-colors flex items-center">
+              <Phone className="w-5 h-5 mr-2" />
+              Contact Us
+            </button>
+            <button className="bg-green-800 text-white px-8 py-3 rounded-lg font-semibold hover:bg-green-700 transition-colors flex items-center">
+              {/* <ShoppingCart className="w-5 h-5 mr-2" /> */}
+              Shop Now
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <style jsx global>{`
+        html {
+          scroll-behavior: smooth;
+        }
+        /* Custom Scrollbar Styles */
+        /* For Webkit browsers like Chrome, Safari */
+        ::-webkit-scrollbar {
+          width: 10px;
+          height: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+          background: #f1f5f9;
+          border-radius: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+          background: #94a3b8;
+          border-radius: 5px;
+          border: 2px solid #f1f5f9;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+          background: #64748b;
+        }
+
+        /* For Firefox */
+        * {
+          scrollbar-width: thin;
+          scrollbar-color: #94a3b8 #f1f5f9;
+        }
+
+        /* Ensure smooth scrolling */
+        html {
+          scroll-behavior: smooth;
+          overflow-y: overlay;
+        }
+
+        /* Optional: Hide scrollbar on mobile devices */
+        @media (max-width: 768px) {
+          ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+          }
+        }
+      `}</style>
     </div>
   );
-}
+};
+
+export default HomePage;
