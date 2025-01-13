@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { ShoppingCart, Sun, Battery, Zap, Phone, Menu, X } from 'lucide-react';
 import ProductGrid from '@/components/ProductCard';
+import AboutSection from '@/components/AboutUs';
 
 const HomePage = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -34,7 +35,8 @@ const HomePage = () => {
     { label: "Home", href: "#home" },
     { label: "Features", href: "#features" },
     { label: "Products", href: "#products" },
-    { label: "Contact", href: "#contact" }
+    { label: "Contact", href: "#contact" },
+    { label: "AboutUs", href: "#about" },
   ];
 
   return (
@@ -44,8 +46,9 @@ const HomePage = () => {
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between h-16">
             <div className="flex items-center">
-              <Sun className="w-8 h-8 text-yellow-500 mr-2" />
-              <span className="text-xl font-bold text-blue-800">SmartUp</span>
+              {/* <Sun className="w-8 h-8 text-yellow-500 mr-2" /> */}
+              <img src='/logo.png' className="w-10 h-10 mr-2" />
+              <span className="text-xl font-bold text-blue-800">Symbiotik</span>
             </div>
 
             {/* Desktop Navigation */}
@@ -98,10 +101,10 @@ const HomePage = () => {
           <div className="flex flex-col md:flex-row items-center justify-between">
             <div className="md:w-1/2 mb-8 md:mb-0">
               <h1 className="text-4xl md:text-6xl font-bold mb-4">
-                Power Your Future with Solar Energy
+                Innovative Power and Automation Solutions.
               </h1>
-              <p className="text-xl mb-8">
-                Premium solar solutions for homes and businesses. Save money while saving the planet.
+              <p className="text-xl mb-8 text-balance">
+                Harnessing Sustainable Energy with Portable Solar Inverters, Automatic Changeover Switches, and Advanced Automation Devices
               </p>
               <a href="#products" className="inline-block bg-yellow-400 text-gray-900 px-8 py-3 rounded-lg font-semibold hover:bg-yellow-300 transition-colors">
                 View Products
@@ -117,7 +120,8 @@ const HomePage = () => {
           </div>
         </div>
       </header>
-
+        {/* About us Section */}
+        <AboutSection />
       {/* Features Section */}
       <section id="features" className="py-16 bg-white">
         <div className="container mx-auto px-4">

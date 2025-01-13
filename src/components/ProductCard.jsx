@@ -24,16 +24,19 @@ const ProductCard = ({ product }) => {
 
   const productDetails = {
     specifications: [
-      { label: "System Power", value: "5kW" },
+      { label: "System Power", value: "500W" },
       { label: "Panel Type", value: "Monocrystalline" },
       { label: "Efficiency", value: "21.5%" },
       { label: "Warranty", value: "25 years" }
     ],
     features: [
-      "High-efficiency solar cells",
-      "Advanced inverter technology",
-      "Weather-resistant design",
-      "Smart monitoring system"
+      "It has 624Wh lithium-ion battery that's able to charge my laptop 3 times.",
+      "Can charge from solar panels or a regular AC (mains).",
+      "Has AC output, USB, and Type-C ports for phones, gadgets etc.",
+      "Automatically cuts off when overloaded, keeping everything safe.",
+      "Monitors battery temperature and cools it when necessary.",
+      "Shows real-time power output, so you always know what’s going on."
+      
     ]
   };
 

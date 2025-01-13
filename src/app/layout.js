@@ -12,7 +12,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "SmartUp City",
+  title: "Symbiotik",
   description: "Premium solar solutions for homes and businesses.",
 };
 
