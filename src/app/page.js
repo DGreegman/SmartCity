@@ -3,11 +3,12 @@ import React, { useState } from 'react';
 import { ShoppingCart, Sun, Battery, Zap, Phone, Menu, X } from 'lucide-react';
 import ProductGrid from '@/components/ProductCard';
 import AboutSection from '@/components/AboutUs';
+import { products } from '@/data/products';
 
 const HomePage = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  const products = [
+/*   const products = [
     {
       id: 1,
       name: "Premium Solar Panel Kit",
@@ -20,7 +21,7 @@ const HomePage = () => {
       name: "Home Battery System",
       description: "10kWh energy storage solution",
       price: "₦3,499",
-      image: "/solar.jpeg"
+      image: "/smart-IOT.jpg"
     },
     {
       id: 3,
@@ -29,7 +30,7 @@ const HomePage = () => {
       price: "₦1,299",
       image: "/solar.jpeg"
     }
-  ];
+  ]; */
 
   const navItems = [
     { label: "Home", href: "#home" },

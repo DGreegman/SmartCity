@@ -22,31 +22,13 @@ const Modal = ({ isOpen, onClose, children }) => {
 const ProductCard = ({ product }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const productDetails = {
-    specifications: [
-      { label: "System Power", value: "500W" },
-      { label: "Panel Type", value: "Monocrystalline" },
-      { label: "Efficiency", value: "21.5%" },
-      { label: "Warranty", value: "25 years" }
-    ],
-    features: [
-      "It has 624Wh lithium-ion battery that's able to charge my laptop 3 times.",
-      "Can charge from solar panels or a regular AC (mains).",
-      "Has AC output, USB, and Type-C ports for phones, gadgets etc.",
-      "Automatically cuts off when overloaded, keeping everything safe.",
-      "Monitors battery temperature and cools it when necessary.",
-      "Shows real-time power output, so you always know what’s going on."
-      
-    ]
-  };
-
   return (
     <>
       <div className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
         <img 
           src={product.image} 
           alt={product.name}
-          className="w-full h-48 object-cover"
+          className="w-full h-48 object-fit"
         />
         <div className="p-6">
           <h3 className="text-xl font-semibold mb-2 text-[#191970]">{product.name}</h3>
@@ -69,7 +51,7 @@ const ProductCard = ({ product }) => {
             <img 
               src={product.image} 
               alt={product.name}
-              className="w-full h-64 object-cover rounded-lg mb-4"
+              className="w-full h-72 object-fit rounded-lg mb-4"
             />
             <h2 className="text-2xl font-bold mb-2 text-[#191970]">{product.name}</h2>
             <p className="text-gray-600">{product.description}</p>
@@ -78,7 +60,7 @@ const ProductCard = ({ product }) => {
           <div className="mb-6">
             <h3 className="text-xl font-semibold mb-3 text-gray-500">Specifications</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {productDetails.specifications.map((spec) => (
+              {product.details.specifications.map((spec) => (
                 <div key={spec.label} className="bg-gray-50 p-3 rounded">
                   <span className="font-bold text-gray-600">{spec.label}: </span>
                   <span className="text-gray-400">{spec.value}</span>
@@ -90,7 +72,7 @@ const ProductCard = ({ product }) => {
           <div className="mb-6">
             <h3 className="text-xl font-semibold mb-3 text-[#191970]">Key Features</h3>
             <ul className="list-disc list-inside space-y-2">
-              {productDetails.features.map((feature) => (
+              {product.details.features.map((feature) => (
                 <li key={feature} className="text-gray-600">{feature}</li>
               ))}
             </ul>
